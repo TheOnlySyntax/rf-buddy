@@ -81,3 +81,9 @@ See the [Serial CLI reference](wiki/Serial-CLI.md) for commands and output forma
 ## License and use
 
 Independent hobby firmware for authorized testing. Use radio features only where you have permission and follow the transmission rules for your region. See the [firmware license](LICENSE).
+
+## Credits
+
+Inspired and helped by:
+
+- **[Momentum Firmware](https://github.com/Next-Flip/Momentum-Firmware)** — feature-rich custom firmware for the Flipper Zero. Its Sub-GHz implementation and protocol handling guided much of this project’s decoding.
