@@ -1,40 +1,40 @@
 # SubGHz online database (example repo)
 
-Tenhle adresář je **šablona GitHub repozitáře**, ze kterého si zařízení
-SubGHz ESP32‑C3 stahuje `.sub` soubory přes WiFi (Home → **Wi‑Fi → Download DB**).
+This directory is a **GitHub repository template** that the SubGHz ESP32‑C3
+device downloads `.sub` files from over Wi‑Fi (Home → **Wi‑Fi → Download DB**).
 
-## Jak to zprovoznit
+## Setup
 
-1. Vytvoř si **veřejný** GitHub repozitář (např. `tvojejmeno/subghz-db`).
-2. Nahraj do něj obsah tohoto adresáře:
-   - `index.txt` — seznam souborů (jeden `.sub` na řádek).
-   - `files/` — samotné `.sub` soubory.
-3. V zařízení nastav repo přes sériovou linku (COM5, 115200):
+1. Create a **public** GitHub repository (e.g. `yourname/subghz-db`).
+2. Upload the contents of this directory into it:
+   - `index.txt` — file list (one `.sub` per line).
+   - `files/` — the `.sub` files themselves.
+3. Point the device at the repo over the serial line (COM5, 115200):
    ```
-   ghrepo tvojejmeno/subghz-db main
+   ghrepo yourname/subghz-db main
    ```
-   (`main` je větev; když ji vynecháš, použije se `main`.)
-4. Na zařízení otevři **Wi‑Fi → Download DB**. Zařízení se připojí k uložené
-   domácí WiFi (nastav ji ve **Wi‑Fi → Wi‑Fi Setup**), stáhne `index.txt`,
-   zobrazí seznam a vybraný soubor uloží do `/subghz`.
+   (`main` is the branch; if you omit it, `main` is used.)
+4. On the device open **Wi‑Fi → Download DB**. It connects to the saved home
+   Wi‑Fi (set it in **Wi‑Fi → Wi‑Fi Setup**), downloads `index.txt`, shows the
+   list, and saves the selected file to `/subghz`.
 
-## Formát `index.txt`
+## `index.txt` format
 
-- Jeden soubor na řádek, cesta **relativní ke kořenu repa**.
-- Řádky začínající `#` a prázdné řádky se ignorují.
-- Zařízení stahuje z:
-  `https://raw.githubusercontent.com/<owner>/<repo>/<branch>/<cesta>`
+- One file per line, path **relative to the repo root**.
+- Lines starting with `#` and blank lines are ignored.
+- The device downloads from:
+  `https://raw.githubusercontent.com/<owner>/<repo>/<branch>/<path>`
 
-Příklad:
+Example:
 ```
-# garážová vrata
+# garage doors
 files/garage/came_12bit.sub
 files/garage/nice_flo.sub
-# auta
+# cars
 files/cars/tpms_toyota.sub
 ```
 
-## Poznámka
+## Note
 
-- Stahuj a vysílej jen signály z **vlastních / autorizovaných** zařízení.
-- `.sub` soubory jsou drobné; úložiště zařízení (LittleFS ~320 KB) jich pojme stovky.
+- Only download and transmit signals for devices you **own / are authorized** to test.
+- `.sub` files are tiny; the device storage (LittleFS ~320 KB) holds hundreds of them.
