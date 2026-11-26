@@ -1,4 +1,4 @@
-# SubGHz ESP32-C3
+# RF-BUDDY Esp32C3
 
 ![SubGHz ESP32-C3 on a 128 × 64 OLED, showing the receiver, raw waveform, playlist, and POCSAG inbox](assets/overview.png)
 
