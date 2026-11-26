@@ -1,42 +1,42 @@
-# Firmware OTA Update (přes Wi‑Fi)
+# Firmware OTA Update (over Wi‑Fi)
 
-Aktualizace firmwaru přes Wi‑Fi bez USB kabelu. Zařízení má dva app sloty
-(ota_0 / ota_1); nový firmware se zapíše do neaktivního slotu a po restartu
-naběhne. Když se nový obraz nepovede, zůstává předchozí slot nedotčený.
+Update the firmware over Wi‑Fi without a USB cable. The device has two app slots
+(ota_0 / ota_1); the new firmware is written to the inactive slot and boots after
+a restart. If the new image fails, the previous slot stays untouched.
 
-**Otevření:** Home → **Wi‑Fi → File Transfer** → sekce *Firmware update (OTA)*.
+**Open:** Home → **Wi‑Fi → File Transfer** → *Firmware update (OTA)* section.
 
-## Postup
+## Steps
 
-1. Otevři **Wi‑Fi → File Transfer**, připoj se k AP zařízení a otevři
+1. Open **Wi‑Fi → File Transfer**, connect to the device AP and open
    `http://192.168.4.1`.
-2. V sekci **Firmware update (OTA)** vyber soubor `firmware.bin`
-   (ne merged.bin — jen samotná aplikace).
-3. Klikni **Flash OTA**. Ukáže se průběh v procentech.
-4. Po dokončení se zařízení samo restartuje do nového firmwaru.
+2. In **Firmware update (OTA)** pick `firmware.bin`
+   (not merged.bin — just the application).
+3. Click **Flash OTA**. A percentage progress bar is shown.
+4. When finished, the device reboots itself into the new firmware.
 
-## OTA přímo z GitHubu (bez PC)
+## OTA straight from GitHub (no PC)
 
-**Wi‑Fi → FW from GitHub** stáhne `firmware.bin` z kořene tvého GitHub repa
-(stejné repo jako online databáze, viz `ghrepo`) a rovnou ho nainstaluje:
+**Wi‑Fi → FW from GitHub** downloads `firmware.bin` from the root of your GitHub
+repo (the same repo as the online database, see `ghrepo`) and installs it directly:
 
-1. Nahraj `firmware.bin` do kořene repa (`https://github.com/<owner>/<repo>`).
-2. Nastav repo: `ghrepo <owner/repo> [branch]` a domácí Wi‑Fi ve Wi‑Fi Setup.
-3. **Wi‑Fi → FW from GitHub** → potvrď **OK** → zařízení stáhne a flashne
-   s průběhem v % na displeji, pak se restartuje.
+1. Upload `firmware.bin` to the repo root (`https://github.com/<owner>/<repo>`).
+2. Set the repo: `ghrepo <owner/repo> [branch]` and the home Wi‑Fi in Wi‑Fi Setup.
+3. **Wi‑Fi → FW from GitHub** → confirm **OK** → the device downloads and flashes
+   with a % progress bar on the display, then restarts.
 
-Tak můžeš vydávat updaty jen pushnutím `firmware.bin` do repa.
+This way you can ship updates just by pushing `firmware.bin` to the repo.
 
-## Který soubor nahrát
+## Which file to upload
 
-- Pro OTA použij **`firmware.bin`** (jen app oddíl), ne `firmware-merged.bin`.
-- `firmware-merged.bin` je určený pro první flash přes USB
-  (`esptool write_flash 0x0 firmware-merged.bin`) — obsahuje bootloader +
-  tabulku oddílů + aplikaci.
+- For OTA use **`firmware.bin`** (application partition only), not `firmware-merged.bin`.
+- `firmware-merged.bin` is for the first flash over USB
+  (`esptool write_flash 0x0 firmware-merged.bin`) — it contains the bootloader +
+  partition table + application.
 
-## Rozložení flash (4 MB)
+## Flash layout (4 MB)
 
-| Oddíl | Offset | Velikost |
+| Partition | Offset | Size |
 |---|---|---|
 | nvs | 0x9000 | 20 KB |
 | otadata | 0xE000 | 8 KB |
@@ -44,8 +44,8 @@ Tak můžeš vydávat updaty jen pushnutím `firmware.bin` do repa.
 | app1 (ota_1) | 0x1E0000 | 1856 KB |
 | spiffs (LittleFS) | 0x3B0000 | 320 KB |
 
-## Poznámky
+## Notes
 
-- Při přechodu na dvou‑slotové rozložení se **jednorázově smažou uložené
-  `.sub`** (změna oddílu LittleFS). Dál už OTA soubory nemaže.
-- Nevypínej zařízení během flashování.
+- Switching to the two-slot layout **wipes saved `.sub` files once**
+  (LittleFS partition change). After that OTA never deletes files.
+- Do not power off the device during flashing.

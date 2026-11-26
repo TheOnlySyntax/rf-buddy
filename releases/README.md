@@ -1,20 +1,21 @@
 # Releases (firmware .bin)
 
-Closed-source firmware — only binaries are published here.
+Closed-source firmware — only binaries are published, under the repository's
+**Releases** tab (not committed into the repo tree).
 
-## Soubory
+## Files
 
-- **`firmware-merged.bin`** — kompletní obraz pro **první flash přes USB**
-  (obsahuje bootloader + tabulku oddílů + boot_app0 + aplikaci).
+- **`firmware-merged.bin`** — complete image for the **first flash over USB**
+  (contains bootloader + partition table + boot_app0 + application).
   ```
   esptool --chip esp32c3 write-flash 0x0 firmware-merged.bin
   ```
-  (COM port podle potřeby: `--port COM5`.)
+  (COM port as needed: `--port COM5`.)
 
-- **`firmware.bin`** — jen aplikační oddíl, pro **OTA update přes Wi‑Fi**
-  (Home → Wi‑Fi → File Transfer → Firmware update, nebo FW from GitHub).
+- **`firmware.bin`** — application partition only, for **OTA update over Wi‑Fi**
+  (Home → Wi‑Fi → File Transfer → Firmware update, or FW from GitHub).
 
-## Pozor
+## Caution
 
-- Přechod na toto rozložení (dva OTA sloty) **jednorázově smaže uložené `.sub`**.
-- Nevypínej zařízení během flashování.
+- Switching to this layout (two OTA slots) **wipes saved `.sub` files once**.
+- Do not power off the device during flashing.

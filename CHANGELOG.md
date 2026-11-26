@@ -3,33 +3,34 @@
 ## Wi-Fi update
 
 ### Added
-- **Wi-Fi File Transfer** (Home → Wi-Fi → File Transfer): zařízení spustí vlastní
-  Wi-Fi AP + web portál na `http://192.168.4.1` — seznam / stažení / nahrání /
-  mazání `.sub` souborů z telefonu nebo PC.
-- **Firmware OTA Update** přes web portál: nahraj `firmware.bin`, zapíše se do
-  druhého app slotu a zařízení se restartuje do nového firmwaru.
-- **OTA přímo z GitHubu** (Home → Wi-Fi → FW from GitHub): stáhne `firmware.bin`
-  z kořene repa (`ghrepo`) a sám flashne, s průběhem v % na displeji.
-- **Online Database (GitHub)** (Home → Wi-Fi → Download DB): stažení `.sub` z
-  veřejného GitHub repa přes HTTPS podle `index.txt`. Repo se nastaví serialem
-  `ghrepo <owner/repo> [branch]`.
-- Wi-Fi dlaždice na Home nově otevírá submenu: **Scanner / File Transfer /
+- **Wi-Fi File Transfer** (Home → Wi-Fi → File Transfer): the device starts its own
+  Wi-Fi AP + web portal at `http://192.168.4.1` — list / download / upload /
+  delete `.sub` files from a phone or PC.
+- **Firmware OTA Update** via the web portal: upload `firmware.bin`, it is written
+  to the second app slot and the device reboots into the new firmware.
+- **OTA straight from GitHub** (Home → Wi-Fi → FW from GitHub): downloads
+  `firmware.bin` from the repo root (`ghrepo`) and flashes it itself, with a
+  percentage progress bar on the display.
+- **Online Database (GitHub)** (Home → Wi-Fi → Download DB): download `.sub` files
+  from a public GitHub repo over HTTPS using `index.txt`. Configure the repo over
+  serial with `ghrepo <owner/repo> [branch]`.
+- The Wi-Fi tile on Home now opens a submenu: **Scanner / File Transfer /
   Download DB / Wi-Fi Setup**.
-- Serial příkazy: `webportal on|off`, `ghrepo`, `open wifiap`, `open ghdb`.
-- Sdílené jádro `wifi_net` (BLE off + uvolnění 48KB CC1101 bufferu) pro všechny
-  Wi-Fi funkce.
+- Serial commands: `webportal on|off`, `ghrepo`, `open wifiap`, `open ghdb`.
+- Shared `wifi_net` core (BLE off + release of the 48 KB CC1101 buffer) for all
+  Wi-Fi features.
 
 ### Fixed
-- **Wi-Fi scan „No networks" / zamrznutí na nule.** Scan neměl souvislou RAM,
-  protože 48KB CC1101 capture buffer (`cap_`) ji zabíral. Wi-Fi recon i
-  `wifiscan` nově buffer uvolní (stejně jako to dělá BLE) → scan funguje.
+- **Wi-Fi scan "No networks" / stuck at zero.** The scan had no contiguous RAM
+  because the 48 KB CC1101 capture buffer (`cap_`) was holding it. Wi-Fi recon and
+  `wifiscan` now release the buffer (the same way BLE does) → scan works.
 
 ### Changed
-- **Rozložení flash → dva OTA app sloty** (nutné pro OTA):
-  `app0`/`app1` = 1856 KB každý, LittleFS = 320 KB.
-  ⚠️ Přechod jednorázově smaže uložené `.sub` (změna oddílu LittleFS).
-- Firmware `firmware.bin` ≈ 1,55 MB (slot 1,75 MB).
+- **Flash layout → two OTA app slots** (required for OTA):
+  `app0`/`app1` = 1856 KB each, LittleFS = 320 KB.
+  ⚠️ Switching to it wipes saved `.sub` files once (LittleFS partition change).
+- Firmware `firmware.bin` ≈ 1.8 MB (slot 1856 KB).
 
 ### Flashing
-- První flash přes USB: `esptool write_flash 0x0 firmware-merged.bin`.
-- Další updaty: OTA přes Wi-Fi (nahraj `firmware.bin` ve File Transfer).
+- First flash over USB: `esptool write_flash 0x0 firmware-merged.bin`.
+- Further updates: OTA over Wi-Fi (upload `firmware.bin` in File Transfer).
