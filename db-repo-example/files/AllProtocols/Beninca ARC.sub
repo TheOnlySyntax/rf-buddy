@@ -1,0 +1,7 @@
+Filetype: Flipper SubGhz Key File
+Version: 1
+Frequency: 433920000
+Preset: FuriHalSubGhzPresetOok650Async
+Protocol: Beninca ARC
+Bit: 128
+Key: 01 23 45 67 89 AB CD EF 10 32 54 76 98 BA DC FE

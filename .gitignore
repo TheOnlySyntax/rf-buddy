@@ -7,8 +7,7 @@
 .vscode/launch.json
 .vscode/ipch/
 
-# Build artefacts
-*.bin
+# Build artefacts (tento repo ale ZAHRNUJE release .bin v releases/)
 *.elf
 *.map
 *.o
