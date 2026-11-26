@@ -1,0 +1,19 @@
+SubGHz ESP32-C3 — End User License
+Copyright (C) 2026. All rights reserved.
+
+This repository distributes prebuilt firmware binaries and documentation only.
+The source code is NOT provided and remains proprietary.
+
+You may:
+  - download and flash the firmware onto ESP32-C3 hardware you own;
+  - use it for lawful, authorised testing and experimentation.
+
+You may NOT, without prior written permission:
+  - redistribute, sell or sublicense the firmware binaries;
+  - decompile, disassemble or reverse engineer the firmware, except to the
+    extent that applicable law expressly permits despite this limitation.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED. THE AUTHORS ARE NOT LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY
+ARISING FROM THE USE OF THE SOFTWARE. You are solely responsible for complying
+with all laws and regulations that apply to radio transmission in your region.
