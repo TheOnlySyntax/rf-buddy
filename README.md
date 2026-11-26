@@ -86,4 +86,4 @@ Independent hobby firmware for authorized testing. Use radio features only where
 
 Inspired and helped by:
 
-- **[Momentum Firmware](https://github.com/Next-Flip/Momentum-Firmware)** — feature-rich custom firmware for the Flipper Zero. Its Sub-GHz implementation and protocol handling guided much of this project’s decoding and UI.
+- **[Momentum Firmware](https://github.com/Next-Flip/Momentum-Firmware)** — feature-rich custom firmware for the Flipper Zero. Its Sub-GHz implementation and protocol handling guided much of this project’s decoding.
